@@ -4,6 +4,8 @@ import { CreateProduct as handleCreateProduct } from "../../../../context/api/in
 import { useParams } from "react-router-dom";
 import useForm from "../../../../hooks/useForm";
 
+import Swal from "sweetalert2";
+
 import Input from "../../../Input";
 
 export default function CreateProduct() {
@@ -19,11 +21,18 @@ export default function CreateProduct() {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    submitForm(() =>
-      handleCreateProduct({ ...form, enterpriseId: id }).finally(() =>
-        navigate(-1)
-      )
-    );
+    submitForm(() => {
+      handleCreateProduct({ ...form, enterpriseId: id })
+        .then(() =>
+          Swal.fire({
+            title: "¡Artículo creado!",
+            text: "Se ha creado un nuevo artículo en el inventario de esta empresa",
+            icon: "success",
+            confirmButtonText: "OK",
+          })
+        )
+        .finally(() => navigate(-1));
+    });
   };
 
   return (

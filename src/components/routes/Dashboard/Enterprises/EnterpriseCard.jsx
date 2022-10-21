@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
-export default function EnterprisesCard({ enterprise }) {
+export default function EnterprisesCard({ enterprise, itemRedirect }) {
   return (
     <div className="my-2 cursor-pointer rounded shadow-lg shadow-gray-200 dark:shadow-gray-900 bg-white dark:bg-gray-700 duration-300 hover:-translate-y-1">
-      <Link to={`/dashboard/inventory/${enterprise?.NIT}`}>
+      <Link to={itemRedirect && `/dashboard/inventory/${enterprise?.NIT}`}>
         <figure>
           <figcaption className="p-4">
             <p className="text-lg m-0 font-bold leading-relaxed text-gray-800 dark:text-gray-300">

@@ -16,11 +16,21 @@ export async function CreateProduct({
   stock,
 }) {
   try {
-    axiosClient.post(
-      `product
-    `,
-      { sku, name, description, enterpriseId, stock }
-    );
+    await axiosClient.post(`product`, {
+      sku,
+      name,
+      description,
+      enterpriseId,
+      stock,
+    });
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function SendInventory({ id, email }) {
+  try {
+    await axiosClient.post(`pdf_inventory/${id}`, { email });
   } catch (err) {
     throw err;
   }

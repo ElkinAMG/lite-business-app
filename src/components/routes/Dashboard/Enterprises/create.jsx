@@ -3,6 +3,8 @@ import { CreateEnterprise as handleCreateEnterprise } from "../../../../context/
 
 import useForm from "../../../../hooks/useForm";
 
+import Swal from "sweetalert2";
+
 import Input from "../../../Input";
 
 export default function CreateEnterprise() {
@@ -17,7 +19,16 @@ export default function CreateEnterprise() {
   const onFormSubmit = (e) => {
     e.preventDefault();
     submitForm(() => {
-      handleCreateEnterprise(form).finally(() => navigate("/dashboard/enterprises"));
+      handleCreateEnterprise(form)
+        .then(() =>
+          Swal.fire({
+            title: "¡Empresa creada!",
+            text: "Esta empresa ha sido registrada",
+            icon: "success",
+            confirmButtonText: "OK",
+          })
+        )
+        .finally(() => navigate("/dashboard/enterprises"));
     });
   };
 

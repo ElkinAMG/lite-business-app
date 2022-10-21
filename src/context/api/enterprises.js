@@ -1,9 +1,16 @@
 import axiosClient from "./axiosInstance";
+import Swal from "sweetalert2";
 
 export async function CreateEnterprise({ nit, name, address, phone }) {
   try {
-    axiosClient.post(`enterprise`, { nit, name, address, phone });
+    await axiosClient.post(`enterprise`, { nit, name, address, phone });
   } catch (err) {
+    Swal.fire({
+      title: "Error",
+      text: "Esta empresa no pudo ser creada",
+      icon: "error",
+      confirmButtonText: "OK",
+    });
     throw err;
   }
 }

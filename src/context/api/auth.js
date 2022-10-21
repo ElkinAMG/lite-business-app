@@ -6,22 +6,14 @@ import axiosClient from "./axiosInstance";
 
 /**
  * @returns {jwt}
-*/
-export async function LoginUser({ email, password }) {
-  try {
-    return (await axiosClient.post("login", { email, password })).data;
-  } catch (err) {
-    throw err;
-  }
+ */
+export function LoginUser({ email, password }) {
+  return axiosClient.post("login", { email, password });
 }
 
 /**
  * @returns {jwt}
-*/
+ */
 export async function SigninUser({ email, password }) {
-  try {
-    return (await axiosClient.post("register", { email, password })).data;
-  } catch (err) {
-    throw err;
-  }
+  await axiosClient.post("register", { email, password });
 }

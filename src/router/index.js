@@ -36,7 +36,14 @@ export default function Router() {
           }
         />
 
-        <Route path="dashboard" element={<Dashboard />}>
+        <Route
+          path="dashboard"
+          element={
+            <Protected>
+              <Dashboard />
+            </Protected>
+          }
+        >
           <Route path="enterprises" element={<Enterprises />}>
             <Route index element={<EnterprisesList />} />
             <Route path="create" element={<CreateEnterprise />} />

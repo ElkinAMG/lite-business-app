@@ -14,9 +14,9 @@ export default function usePaginator(api, ...args) {
 
   const changeData = useCallback(async () => {
     const { items, pages } = await api(page, ...args);
-    console.log("hola");
     setItems(items);
     setPages(pages);
+    // eslint-disable-next-line
   }, [page, api]);
 
   useEffect(() => {

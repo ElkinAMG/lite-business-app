@@ -1,5 +1,7 @@
 import { LoginUser, SigninUser } from "../api/auth";
 
+import Swal from "sweetalert2";
+
 export const userState = {
   email: null,
   isLoggedIn: false,
@@ -16,28 +18,33 @@ export const userState = {
 
 export default function userReducer(state, action) {
   const actionTypes = {
-    LOGIN: () => {
-      try {
-        LoginUser(action.payload).then(({ token }) => {
-          localStorage.setItem("user-token", token);
-        });
-        return { ...state, isLoggedIn: true };
-      } catch (err) {
-        throw err;
-      }
+    UNPROMISE: () => {
+      return { ...state, ...action.payload };
     },
-    SIGNUP: () => {
-      try {
-        SigninUser(action.payload).then(({ token }) => {
-          localStorage.setItem("user-token", token);
-        });
+    LOGIN: async () =>
+      LoginUser(action.payload)
+        .then(({ data }) => {
+          localStorage.setItem("user-token", data.token);
+          return { ...state, isLoggedIn: data.auth };
+        })
+        .catch(() =>
+          Swal.fire({
+            title: "Error",
+            text: "Las credenciales ingresadas no son correctas",
+            icon: "error",
+            confirmButtonText: "OK",
+          })
+        ),
+    SIGNUP: () =>
+      SigninUser(action.payload).then(({ token }) => {
+        localStorage.setItem("user-token", token);
         return { ...state, isLoggedIn: true };
-      } catch (err) {
-        throw err;
-      }
+      }),
+    SIGNOUT: () => {
+      localStorage.removeItem("user-token");
+      return { ...state, isLoggedIn: false };
     },
     RECOVERSESSION: () => {
-      // console.log("token? ", !!action.payload?.token);
       return { ...state, isLoggedIn: !!action.payload?.token };
     },
   };

@@ -1,6 +1,13 @@
+import { useContext } from "react";
+import { userContext } from "../../../context";
+
 import { Link, Outlet } from "react-router-dom";
 
 export default function DashboardLayout() {
+  const { Dispatch } = useContext(userContext);
+  const signOut = () => {
+    Dispatch("SIGNOUT");
+  };
   return (
     <>
       <div id="view" className="h-full w-screen flex flex-row">
@@ -66,7 +73,10 @@ export default function DashboardLayout() {
                 <span className="">Inventario</span>
               </Link> */}
 
-              <span className="text-sm cursor-pointer bg-red-600 font-medium text-gray-700 py-2 px-2 hover:scale-105 rounded-md transition duration-150 ease-in-out hover:opacity-90">
+              <span
+                onClick={signOut}
+                className="text-sm cursor-pointer bg-red-600 font-medium text-gray-700 py-2 px-2 hover:scale-105 rounded-md transition duration-150 ease-in-out hover:opacity-90"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6 fill-none inline-block"
