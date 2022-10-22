@@ -17,7 +17,7 @@ Se han implementado las siguientes tecnologías con el fin de satisfacer los req
 
 ## Guía para inicializar el proyecto
 
-    ```sh
+    ```
     cd lite-business-app
     npm i : para instalar todas las dependencias necesarias
     npm run start : para iniciar el proyecto en ReactJS
