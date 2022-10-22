@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 
 export async function GetInventoryByUser(page, id) {
   try {
-    return (await Axios.get(`product?id=${id}&page=${page}`)).data;
+    return (await Axios().get(`product?id=${id}&page=${page}`)).data;
   } catch (err) {
     throw err;
   }
@@ -11,7 +11,7 @@ export async function GetInventoryByUser(page, id) {
 
 export async function GetProduct(sku) {
   try {
-    return (await Axios.get(`product/${sku}`)).data;
+    return (await Axios().get(`product/${sku}`)).data;
   } catch (err) {
     throw err;
   }
@@ -25,7 +25,7 @@ export async function CreateProduct({
   stock,
 }) {
   try {
-    await Axios.post("product", {
+    await Axios().post("product", {
       sku,
       name,
       description,
@@ -45,7 +45,7 @@ export async function CreateProduct({
 
 export async function DeleteProduct(id) {
   try {
-    await Axios.delete(`product/${id}`);
+    await Axios().delete(`product/${id}`);
   } catch (err) {
     Swal.fire({
       title: "Error",
@@ -59,7 +59,7 @@ export async function DeleteProduct(id) {
 
 export async function UpdateProduct(sku, { name, description, stock }) {
   try {
-    await Axios.put(`product/${sku}`, {
+    await Axios().put(`product/${sku}`, {
       SKU: sku,
       name,
       description,
@@ -78,7 +78,7 @@ export async function UpdateProduct(sku, { name, description, stock }) {
 
 export async function SendInventory({ id, email }) {
   try {
-    await Axios.post(`pdf_inventory/${id}`, { email });
+    await Axios().post(`pdf_inventory/${id}`, { email });
   } catch (err) {
     throw err;
   }
@@ -86,7 +86,7 @@ export async function SendInventory({ id, email }) {
 
 export async function DownloadInventory(id) {
   try {
-    await Axios.get(`pdf_inventory/${id}`);
+    await Axios().get(`pdf_inventory/${id}`);
   } catch (err) {
     throw err;
   }
