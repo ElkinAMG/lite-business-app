@@ -2,6 +2,10 @@
 
 Se han implementado las siguientes tecnologías con el fin de satisfacer los requerimientos solicitados; ReactJS, Axios, React Router, TailwindCSS, React Hooks. Todas estas cumplieron un papel importante en el desarrollo de esta prueba.
 
+## Antes de utilizar la plataforma tener en cuenta:
+    * Para poder ingresar a la plataforma por completo debes tener una cuenta registrada, es por eso que existe la ruta oculta `/register` para que puedas registrar tu cuenta y hacer uso de la plataforma
+
+
 ## Características
 * ReactJS: Fue utilizado para construir la página web de manera interactiva y responsive.
 
@@ -22,6 +26,7 @@ Se han implementado las siguientes tecnologías con el fin de satisfacer los req
     npm i : para instalar todas las dependencias necesarias
     npm run start : para iniciar el proyecto en ReactJS
     ```
+
 ## Documentación de las tecnologías implementadas
 
 -  [ReactJs](https://es.reactjs.org/)
