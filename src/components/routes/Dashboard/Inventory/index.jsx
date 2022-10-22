@@ -1,6 +1,9 @@
 import { Link, Outlet, useParams } from "react-router-dom";
 
-import { SendInventory } from "../../../../context/api/inventory";
+import {
+  DownloadInventory,
+  SendInventory,
+} from "../../../../context/api/inventory";
 
 import Swal from "sweetalert2";
 
@@ -27,12 +30,22 @@ export default function ProfileInventory() {
     }
   };
 
+  const onDownloadInventory = async () => {
+    await DownloadInventory(id);
+  };
+
   return (
     <main className="w-screen p-10">
       <h1 className="text-center text-4xl text-blue-700 font-semibold">
         Inventario
       </h1>
       <div className="mt-5 flex gap-2 justify-end">
+        <button
+          onClick={onDownloadInventory}
+          className="bg-red-600 p-2 rounded-md text-white text-lg hover:opacity-90 transition-opacity"
+        >
+          Descargar en PDF
+        </button>
         <button
           onClick={sendEmail}
           className="bg-red-600 p-2 rounded-md text-white text-lg hover:opacity-90 transition-opacity"

@@ -83,3 +83,11 @@ export async function SendInventory({ id, email }) {
     throw err;
   }
 }
+
+export async function DownloadInventory(id) {
+  try {
+    await Axios.get(`pdf_inventory/${id}`);
+  } catch (err) {
+    throw err;
+  }
+}
