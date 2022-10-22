@@ -19,9 +19,11 @@ export default function usePaginator(api, ...args) {
     // eslint-disable-next-line
   }, [page, api]);
 
+  const reloadPage = () => changeData();
+
   useEffect(() => {
     changeData();
   }, [changeData]);
 
-  return { items, page, pages, onPageChange };
+  return { items, page, pages, reloadPage, onPageChange };
 }

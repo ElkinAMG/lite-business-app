@@ -13,10 +13,14 @@ export default function Input({
 
   return (
     <>
-      <label className="text-lg ml-12">{label}{ required && <span className="text-red-800">*</span> }</label>
+      <label className="text-lg ml-12">
+        {label}
+        {required && <span className="text-red-800">*</span>}
+      </label>
       {props?.type !== "textarea" ? (
         <input
           name={name}
+          title={props.disabled && "Este campo no es editable"}
           placeholder={placeholder}
           className={`${width} ${margin} hover:border-blue-700 transition-all tracking-wide border-2 rounded-lg p-1.5 ${
             validateField ? "border-[#cccccc]" : "border-red-700"

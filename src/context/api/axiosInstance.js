@@ -1,10 +1,8 @@
 import axios from "axios";
 
-const axiosClient = axios.create({
+const Axios = axios.create({
+  headers: { Authorization: localStorage.getItem("user-token") },
   baseURL: process.env.REACT_APP_API_GATEWAY,
-  headers: {
-    Authorization: localStorage.getItem("user-token"),
-  },
 });
 
-export default axiosClient;
+export default Axios;

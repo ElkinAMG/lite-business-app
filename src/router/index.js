@@ -13,6 +13,8 @@ import CreateEnterprise from "../components/routes/Dashboard/Enterprises/create"
 import CreateProduct from "../components/routes/Dashboard/Inventory/create";
 import EnterprisesList from "../components/routes/Dashboard/Enterprises/EntreprisesList";
 import InventoryList from "../components/routes/Dashboard/Inventory/InventoryList";
+import EditEnterprise from "../components/routes/Dashboard/Enterprises/edit";
+import EditProduct from "../components/routes/Dashboard/Inventory/edit";
 
 export default function Router() {
   return (
@@ -47,10 +49,12 @@ export default function Router() {
           <Route path="enterprises" element={<Enterprises />}>
             <Route index element={<EnterprisesList />} />
             <Route path="create" element={<CreateEnterprise />} />
+            <Route path="edit/:id" element={<EditEnterprise />} />
           </Route>
           <Route path="inventory/:id" element={<Inventory />}>
             <Route index element={<InventoryList />} />
             <Route path="create" element={<CreateProduct />} />
+            <Route path="edit/:sku" element={<EditProduct />} />
           </Route>
           <Route path="*" element={<h1>No existe</h1>} />
         </Route>

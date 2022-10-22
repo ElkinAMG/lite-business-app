@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /**
- * 
- * @param {{ string: [RegExp] }} fields are the fields in the form with their respectives validations as Regex
+ *
+ * @param {{ field: [RegExp] }} fields are the fields in the form with their respectives validations as Regex
+ * @param {{ field: [string] }} defaultValues are the default values for each field
+ * @param {boolean} isLoading is the value that defines if data from defaultValues is already fetched
  */
 
-export default function useForm(fields) {
+export default function useForm(fields, defaultValues, isLoading) {
   const [form, setForm] = useState(
     Object.keys(fields).reduce((obj, field) => {
       obj[field] = "";
@@ -48,6 +50,18 @@ export default function useForm(fields) {
     );
     return errors;
   };
+
+  useEffect(() => {
+    if (isLoading === false) {
+      setForm(
+        Object.keys(fields).reduce((obj, field) => {
+          obj[field] = defaultValues[field] || "";
+          return obj;
+        }, {})
+      );
+    }
+    // eslint-disable-next-line
+  }, [isLoading]);
 
   return { form, handleFormChange, submitForm, validateForm, errors };
 }
